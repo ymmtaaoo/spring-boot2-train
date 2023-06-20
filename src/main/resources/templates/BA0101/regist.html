@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>item登録画面</title>
+</head>
+<body>
+    <h1 >item登録画面</h1>
+    <a href="/">top</a>
+
+    <form method="POST" th:action="@{confirm}" action="./confirm.html" th:object="${itemForm}">
+        <div>
+            <p>ID</p>
+            <input type="text" th:field="*{id}" />
+            <div th:if="${#fields.hasErrors('id')}" th:errors="*{id}" />
+        </div>
+
+        <div>
+            <p>ITEM NAME</p>
+            <input type="text" th:field="*{itemName}" />
+            <div th:if="${#fields.hasErrors('itemName')}" th:errors="*{itemName}" />
+        </div>
+
+        <div>
+            <p>PRICE</p>
+            <input type="text" th:field="*{price}" />
+            <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" />
+        </div>
+
+        
+        <button type="submit">確認</button>
+    </form>
+
+</body>
+</html>

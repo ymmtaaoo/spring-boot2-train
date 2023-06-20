@@ -1,0 +1,36 @@
+<configuration>
+
+
+
+    <!-- 標準出力用設定 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>MS932</charset>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level ROOT - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- APPファイル出力用設定 -->
+    <appender name="APP_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>app.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>app.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <!-- %d{yyyy-MM-dd}の設定によって、自動でローテーションがトリガされる。日まで指定すると、毎日ローテーション。 -->
+
+            <!-- 最大7日間保存 -->
+            <maxHistory>7</maxHistory>
+
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level ROOT  - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- rootロガー。ログは原則APPファイルと標準出力に出力する -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="APP_FILE" />
+    </root>
+</configuration>

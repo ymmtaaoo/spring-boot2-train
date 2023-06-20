@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>top画面</title>
+</head>
+<body>
+    <h1 >top画面</h1>
+    
+    <ul>
+        <li><a href="/WBA0101/index">item登録画面</a></li>
+        <li><a href="/WBA0201/index">item検索画面</a></li>
+        <th:block sec:authorize-url="/WBA0401"><li><a href="/WBA0401/index">item削除画面</a></li></th:block>
+    </ul>
+    
+</body>
+</html>

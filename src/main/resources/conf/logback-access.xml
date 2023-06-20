@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<conversionRule conversionWord="userid"
+		converterClass="com.example.demo.core.log.UseridAccessConverter" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>MS932</charset>
+            <pattern>%t{yyyy-MM-dd HH:mm:ss} INFO  ACCESS %S %-10userid %l %u "%r" %s %D</pattern>
+        </encoder>
+    </appender>
+    <appender name="ACCESS_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>access.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>access.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <!-- %d{yyyy-MM-dd}の設定によって、自動でローテーションがトリガされる。日まで指定すると、毎日ローテーション。 -->
+
+            <!-- 最大7日間保存 -->
+            <maxHistory>7</maxHistory>
+
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%t{yyyy-MM-dd HH:mm:ss} INFO  ACCESS %S %l %u "%r" %s %D</pattern>
+        </encoder>
+    </appender>
+    <appender-ref ref="STDOUT"/>
+    <appender-ref ref="ACCESS_FILE"/>
+</configuration>
