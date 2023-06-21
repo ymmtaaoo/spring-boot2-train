@@ -28,7 +28,7 @@ public class BA0101Controller {
      */
     @GetMapping("/WBA0101/index")
     public String index(Model model) {
-        logger.info("証跡ログ：/WBA0101/index");
+        logger.info("登録画面表示");
         model.addAttribute("itemForm", new ItemForm(1, "1", 1));
         return "BA0101/regist";
     }

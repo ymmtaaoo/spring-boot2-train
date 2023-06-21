@@ -14,7 +14,7 @@ public class ItemSearchService {
     
     public Page<Item> findAll(ItemSearchCriteria criteria){
 
-        System.out.println("PageSize:" + criteria.getPageable().getPageSize() + ", Offset:" + criteria.getPageable().getOffset() + ", ItemName:" + criteria.getItemName() + ", Price:" + criteria.getPrice());
+        //System.out.println("PageSize:" + criteria.getPageable().getPageSize() + ", Offset:" + criteria.getPageable().getOffset() + ", ItemName:" + criteria.getItemName() + ", Price:" + criteria.getPrice());
 
         List<Item> itemList = new ArrayList<>();
         itemList.add(new Item(1, "ペン", 100));

@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+import org.slf4j.MDC;
 import org.springframework.boot.web.servlet.filter.OrderedFilter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -20,14 +21,16 @@ public class UseridFilter implements OrderedFilter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		try {
-			chain.doFilter(request, response);
-		} finally {
 			SecurityContext securityContext = SecurityContextHolder.getContext();
 			Authentication authentication = securityContext.getAuthentication();
 			if (authentication != null) {
-				String userName = authentication.getName();
-				request.setAttribute("access-converter-userid", userName);
+				String userid = authentication.getName();
+				request.setAttribute("access-converter-userid", userid);
+				MDC.put("userid", userid);
 			}
+			chain.doFilter(request, response);
+		} finally {
+			MDC.remove("userid");
 		}
 	}
 
