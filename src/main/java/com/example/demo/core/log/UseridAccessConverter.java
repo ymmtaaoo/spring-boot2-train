@@ -5,6 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import ch.qos.logback.access.pattern.AccessConverter;
 import ch.qos.logback.access.spi.IAccessEvent;
 
+/**
+ * ユーザID変換
+ */
 public class UseridAccessConverter extends AccessConverter {
 
 	@Override

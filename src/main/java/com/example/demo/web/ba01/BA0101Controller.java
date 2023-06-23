@@ -21,10 +21,13 @@ public class BA0101Controller {
     @Autowired
     private ItemRegistService itemRegistService;
 
+    /** ロガー */
     Logger logger = LoggerFactory.getLogger(BA0101Controller.class);
 
-    /*
+    /**
      * 表示
+     * @param model Model
+     * @return 登録画面
      */
     @GetMapping("/WBA0101/index")
     public String index(Model model) {
@@ -33,8 +36,11 @@ public class BA0101Controller {
         return "BA0101/regist";
     }
 
-    /*
+    /**
      * 確認
+     * @param itemForm ItemForm
+     * @param result BindingResult
+     * @return 確認画面 or 登録画面
      */
     @PostMapping("/WBA0101/confirm")
     public String confirm(@Validated ItemForm itemForm, BindingResult result) {
@@ -44,8 +50,11 @@ public class BA0101Controller {
         return "BA0101/confirm";
     }
 
-    /*
+    /**
      * 登録
+     * @param itemForm ItemForm
+     * @param result BindingResult
+     * @return　完了画面 or 登録画面
      */
     @PostMapping(path="/WBA0101/regist", params="regist")
     public String regist(@Validated ItemForm itemForm, BindingResult result) {
@@ -70,14 +79,17 @@ public class BA0101Controller {
     
     /**
      * 戻る
+     * @param itemForm ItemForm
+     * @return 登録画面
      */
     @PostMapping(path="/WBA0101/regist", params="back")
     public String back(ItemForm itemForm) {
         return "BA0101/regist";
     }
 
-    /*
+    /**
      * 完了
+     * @return 完了画面
      */
     @GetMapping("/WBA0101/complete")
     public String complete() {

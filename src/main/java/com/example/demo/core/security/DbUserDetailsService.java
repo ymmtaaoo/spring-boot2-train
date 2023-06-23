@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 /**
  * DBで管理しているユーザ情報を取得するクラス
  * 未実装
+ * application.propertiesファイルに「web.security.db.auth=true」の場合に本クラスが動作する。
  */
 @Component
 @ConditionalOnProperty(value = "web.security.db.auth")
@@ -25,6 +26,7 @@ public class DbUserDetailsService implements UserDetailsService {
         UserDetails user = findUserFromDb(username);
     
         if (user == null) {
+            // 存在しないユーザ
             throw new UsernameNotFoundException(username);
         }
         return user;

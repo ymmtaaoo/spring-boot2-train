@@ -6,11 +6,13 @@ import org.springframework.context.annotation.Configuration;
 
 import ch.qos.logback.access.tomcat.LogbackValve;
 
+/** アクセスログカスタマイズ */
 @Configuration
 public class AccessLogCustomizer implements WebServerFactoryCustomizer<ConfigurableTomcatWebServerFactory> {
 
 	@Override
 	public void customize(ConfigurableTomcatWebServerFactory factory) {
+		// tomcatアクセスログ追加
 		factory.addEngineValves(new LogbackValve());
 	}
 }

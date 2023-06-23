@@ -10,6 +10,9 @@ import org.springframework.data.domain.Pageable;
 
 import lombok.Data;
 
+/**
+ * 検索フォーム
+ */
 @Data
 public class ItemSearchForm implements Serializable {
 
@@ -21,6 +24,11 @@ public class ItemSearchForm implements Serializable {
 
     private Integer page;
 
+    /**
+     * 検索条件を生成する
+     * @param size 1ページたりの件数
+     * @return 検索条件
+     */
     public ItemSearchCriteria toCriteria(int size) {
         
         ItemSearchCriteria criteria = new ItemSearchCriteria();
@@ -31,6 +39,9 @@ public class ItemSearchForm implements Serializable {
         return criteria;
     }
 
+    /**
+     * フォームをクリアする
+     */
     public void clear() {
         BeanUtils.copyProperties(new ItemSearchForm(), this);
     }

@@ -11,7 +11,6 @@ public class AA0101Controller {
 
     /**
      * トップ画面表示する。itemを全件表示する
-     * @param model Model
      * @return top画面
      */
     @GetMapping("/")

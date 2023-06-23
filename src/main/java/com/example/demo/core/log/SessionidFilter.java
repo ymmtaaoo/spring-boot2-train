@@ -13,6 +13,9 @@ import org.slf4j.MDC;
 import org.springframework.boot.web.servlet.filter.OrderedFilter;
 import org.springframework.stereotype.Component;
 
+/**
+ * セッションIDフィルター
+ */
 @Component
 public class SessionidFilter implements OrderedFilter {
 

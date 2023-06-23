@@ -5,10 +5,10 @@ import javax.servlet.http.HttpServletRequest;
 import ch.qos.logback.access.pattern.AccessConverter;
 import ch.qos.logback.access.spi.IAccessEvent;
 
-
+/**
+ * セッションID変換
+ */
 public class SessionidAccessConverter extends AccessConverter {
-
-	static final String REQUEST_ATTRIBUTE_NAME = SessionidAccessConverter.class.getName();
 
 	@Override
 	public String convert(IAccessEvent event) {

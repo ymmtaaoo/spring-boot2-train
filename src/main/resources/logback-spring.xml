@@ -1,16 +1,15 @@
 <configuration>
 
-
-
-    <!-- 標準出力用設定 -->
+    <!-- アプリケーションログ　標準出力用設定 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <charset>MS932</charset>
+            <!-- アプリログフォーマット -->
             <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level ROOT   %X{sessionid} %-10X{userid} %msg%n</pattern>
         </encoder>
     </appender>
 
-    <!-- APPファイル出力用設定 -->
+    <!-- アプリケーションログ　APPファイル出力用設定 -->
     <appender name="APP_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>app.log</file>
 
@@ -24,6 +23,7 @@
         </rollingPolicy>
         <encoder>
             <charset>UTF-8</charset>
+            <!-- アプリログフォーマット -->
             <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level ROOT   %X{sessionid} %-10X{userid} %msg%n</pattern>
         </encoder>
     </appender>

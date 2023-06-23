@@ -7,6 +7,7 @@
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <charset>MS932</charset>
+            <!-- アクセスログフォーマット -->
             <pattern>%t{yyyy-MM-dd HH:mm:ss} INFO  ACCESS %S %-10userid "%r" %s %D</pattern>
         </encoder>
     </appender>
@@ -23,6 +24,7 @@
         </rollingPolicy>
         <encoder>
             <charset>UTF-8</charset>
+            <!-- アクセスログフォーマット -->
             <pattern>%t{yyyy-MM-dd HH:mm:ss} INFO  ACCESS %S %-10userid "%r" %s %D</pattern>
         </encoder>
     </appender>

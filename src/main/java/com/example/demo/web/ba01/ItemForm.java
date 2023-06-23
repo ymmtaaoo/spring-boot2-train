@@ -28,6 +28,10 @@ public class ItemForm {
     @Range(max=10000)
     private Integer price;
 
+    /**
+     * Item生成
+     * @return Item
+     */
     public Item toItem() {
         // ItemFormからItemエンティティへデータコピー
         // 同じ名称のフィールドは自動的にコピーしてくれる。

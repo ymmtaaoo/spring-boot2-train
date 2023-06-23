@@ -4,6 +4,9 @@ import org.springframework.data.domain.Pageable;
 
 import lombok.Data;
 
+/**
+ * 検索条件
+ */
 @Data
 public class ItemSearchCriteria {
     private String itemName;
