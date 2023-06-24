@@ -32,8 +32,7 @@ public class WebExceptionHandler {
     @ExceptionHandler(SystemException.class)
     public String handleSystemException(SystemException t) {
         logger.error(messages.getMessage(t.getMessageId(), null, Locale.getDefault()), t);
-        // 本来はerror.htmlに遷移させる
-        return "syserror.html";
+        return "error.html";
     }
 
     /**
@@ -44,8 +43,7 @@ public class WebExceptionHandler {
     @ExceptionHandler(Exception.class)
     public String handleException(Exception t) {
         logger.error(t.getMessage(), t);
-        // 本来はerror.htmlに遷移させる
-        return "syserror.html";
+        return "error.html";
     }
     
 }

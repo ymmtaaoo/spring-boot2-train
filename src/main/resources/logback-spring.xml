@@ -11,10 +11,10 @@
 
     <!-- アプリケーションログ　APPファイル出力用設定 -->
     <appender name="APP_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>app.log</file>
+        <file>log/app.log</file>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>app.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <fileNamePattern>log/app.log.%d{yyyy-MM-dd}</fileNamePattern>
             <!-- %d{yyyy-MM-dd}の設定によって、自動でローテーションがトリガされる。日まで指定すると、毎日ローテーション。 -->
 
             <!-- 最大7日間保存 -->

@@ -1,10 +1,13 @@
 package com.example.demo.web.ba01;
 
+import java.time.LocalDate;
+
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.BeanUtils;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.example.demo.entity.Item;
 
@@ -30,6 +33,9 @@ public class ItemForm {
 
     @Length(max=6)
     private String groupid;
+
+    @DateTimeFormat(pattern = "uuuu-MM-dd")
+    private LocalDate registDate;
 
     /**
      * Item生成

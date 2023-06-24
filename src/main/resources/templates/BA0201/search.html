@@ -6,18 +6,18 @@
 </head>
 <body>
     <h1 >item検索画面</h1>
-    <a href="/">top</a>
+    <a th:href="@{/}" href="../AA0101/index.html">top</a>
 
     <form method="GET" th:action="@{/WBA0201/search}" action="./search.html" th:object="${itemSearchForm}">
 
         <div>
-            <p>ITEM NAME</p>
+            <span style="display: inline-block;width: 100px;">ITEM NAME</span>
             <input type="text" th:field="*{itemName}" />
             <div th:if="${#fields.hasErrors('itemName')}" th:errors="*{itemName}" />
         </div>
 
         <div>
-            <p>PRICE</p>
+            <span style="display: inline-block;width: 100px;">PRICE</span>
             <input type="text" th:field="*{price}" />
             <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" />
         </div>
@@ -32,20 +32,22 @@
     </div>
 
     <ul th:each="item : ${itemList}">
-        <li><a th:text="${item.id}" th:href="@{/WBA0301/detail(id=${item.id})}">1</a>:<span th:text="${item.itemName}">ペン</span>:<span th:text="${item.price}">100円</span>円</li>
+        <li><a th:text="${item.id}" th:href="@{/WBA0301/index(id=${item.id})}" href="../BA0301/index.html">1</a>:
+            <span th:text="${item.itemName}">ペン</span>:
+            <span th:text="${item.price}">100円</span>円</li>
     </ul>
 
     <div th:if="${pages}" class="paging">
         <!-- 先頭のページリンク -->
         <span>
             <span th:if="${pages.first}">&lt;&lt;</span>
-            <a th:if="${not pages.first}" th:href="@{${url}(page=0)}">&lt;&lt;</a>
+            <a th:if="${not pages.first}" th:href="@{${url}(page=0)}" value="1">&lt;&lt;</a>
         </span>
 
         <!-- 中間のページリンク -->
         <span th:each="i:${#numbers.sequence(0, pages.totalPages-1)}">
-            <span th:if="${i}==${pages.number}" th:text="${i+1}"></span>
-            <a th:if="${i}!=${pages.number}" th:href="@{${url}(page=${i})}"><span th:text="${i+1}"></span></a>
+            <span th:if="${i}==${pages.number}" th:text="${i+1}">1</span>
+            <a th:if="${i}!=${pages.number}" th:href="@{${url}(page=${i})}" href="search.html"><span th:text="${i+1}">2</span></a>
         </span>
 
         <!-- 末尾のページリンク -->

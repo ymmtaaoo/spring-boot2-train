@@ -12,10 +12,10 @@
         </encoder>
     </appender>
     <appender name="ACCESS_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>access.log</file>
+        <file>log/access.log</file>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>access.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <fileNamePattern>log/access.log.%d{yyyy-MM-dd}</fileNamePattern>
             <!-- %d{yyyy-MM-dd}の設定によって、自動でローテーションがトリガされる。日まで指定すると、毎日ローテーション。 -->
 
             <!-- 最大7日間保存 -->

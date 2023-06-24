@@ -1,5 +1,6 @@
 package com.example.demo.web.ba01;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,7 +39,8 @@ public class BA0101Controller {
     @GetMapping("/WBA0101/index")
     public String index(Model model) {
         logger.info("登録画面表示");
-        model.addAttribute("itemForm", new ItemForm(1, "1", 1, ""));
+        model.addAttribute("itemForm", 
+            new ItemForm(1, "ペン", 1000, "CD-A01", LocalDate.now()));
         return "BA0101/regist";
     }
 
