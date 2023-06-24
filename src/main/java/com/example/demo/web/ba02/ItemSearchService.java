@@ -26,11 +26,11 @@ public class ItemSearchService {
 
         // ダミー
         List<Item> itemList = new ArrayList<>();
-        itemList.add(new Item(1, "ペン", 100));
-        itemList.add(new Item(2, "ノート", 200));
-        itemList.add(new Item(3, "コンパス", 300));
-        itemList.add(new Item(4, "消しゴム", 100));
-        itemList.add(new Item(5, "えんぴつ", 100));
+        itemList.add(new Item(1, "ペン", 100, "cdg01"));
+        itemList.add(new Item(2, "ノート", 200, "cdg01"));
+        itemList.add(new Item(3, "コンパス", 300, "cdg01"));
+        itemList.add(new Item(4, "消しゴム", 100, "cdg01"));
+        itemList.add(new Item(5, "えんぴつ", 100, "cdg01"));
 
         return new PageImpl<Item>(itemList, criteria.getPageable(), 15);
     }

@@ -28,6 +28,9 @@ public class ItemForm {
     @Range(max=10000)
     private Integer price;
 
+    @Length(max=6)
+    private String groupid;
+
     /**
      * Item生成
      * @return Item

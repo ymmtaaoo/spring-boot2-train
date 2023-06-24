@@ -1,5 +1,9 @@
 package com.example.demo.web.ba01;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.demo.common.code.ItemGroup;
 import com.example.demo.core.exception.AppException;
 
 /*
@@ -32,7 +38,7 @@ public class BA0101Controller {
     @GetMapping("/WBA0101/index")
     public String index(Model model) {
         logger.info("登録画面表示");
-        model.addAttribute("itemForm", new ItemForm(1, "1", 1));
+        model.addAttribute("itemForm", new ItemForm(1, "1", 1, ""));
         return "BA0101/regist";
     }
 
@@ -94,5 +100,15 @@ public class BA0101Controller {
     @GetMapping("/WBA0101/complete")
     public String complete() {
         return "BA0101/complete";
+    }
+
+    /**
+     * 分類コードのプルダウンリスト
+     * @return プルダウンリスト
+     */
+    @ModelAttribute("groups")
+    public List<ItemGroup> getGroupid() {
+        return Arrays.stream(ItemGroup.values())
+        .collect(Collectors.toList());
     }
 }

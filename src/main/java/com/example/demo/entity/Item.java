@@ -14,4 +14,5 @@ public class Item {
     private Integer id;
     private String itemName;
     private Integer price;
+    private String groupid;
 }

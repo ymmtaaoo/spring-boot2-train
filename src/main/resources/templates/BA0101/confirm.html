@@ -24,9 +24,15 @@
             <div th:text="*{price}" ></div>
         </div>
 
+        <div>
+            <p>group</p>
+            <div th:text="*{@itemRegistViewHelper.getGroupName(groupid)}" ></div>
+        </div>
+
         <input type="hidden" th:field="*{id}" />
         <input type="hidden" th:field="*{itemName}" />
         <input type="hidden" th:field="*{price}" />
+        <input type="hidden" th:field="*{groupid}" />
 
         <button type="submit" name="back">戻る</button>
         <button type="submit" name="regist">登録</button>
