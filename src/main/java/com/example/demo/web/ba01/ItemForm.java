@@ -2,6 +2,7 @@ package com.example.demo.web.ba01;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
@@ -9,6 +10,7 @@ import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.BeanUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.example.demo.common.code.ItemGroup;
 import com.example.demo.entity.Item;
 
 import lombok.AllArgsConstructor;
@@ -36,6 +38,16 @@ public class ItemForm {
 
     @DateTimeFormat(pattern = "uuuu-MM-dd")
     private LocalDate registDate;
+
+    @AssertTrue(message = "{MC001}")
+    public boolean isBunguPrice() {
+        if (ItemGroup.BUNGU.getCode().equals(groupid)) {
+            if (price >= 5000) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     /**
      * Item生成
