@@ -9,7 +9,7 @@
     <a th:href="@{/}" href="../AA0101/index.html">top</a>
 
     <form method="GET" th:action="@{/WBA0201/search}" action="./search.html" th:object="${itemSearchForm}">
-
+        <span th:if="${#fields.hasGlobalErrors()}" th:errors="*{global}"></span>
         <div>
             <span style="display: inline-block;width: 100px;">ITEM NAME</span>
             <input type="text" th:field="*{itemName}" />
@@ -57,7 +57,6 @@
                 &gt;&gt;
             </a>
         </span>
-
     </div>
 
 </body>

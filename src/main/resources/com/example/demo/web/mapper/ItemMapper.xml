@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.web.mapper.ItemMapper">
+    <insert id="insertItem">
+        insert into item(
+            id,
+            item_name,
+            price,
+            groupid,
+            regist_date
+        ) values(
+            #{id},
+            #{itemName},
+            #{price},
+            #{groupid},
+            #{registDate}
+        )
+    </insert>
+    <sql id="criteria">
+        <where>
+            <if test="itemName != null and itemName != ''">
+                item_name = #{itemName}
+            </if>
+            <if test="price != null">
+                <![CDATA[
+                    and price >= #{price}
+                ]]>
+            </if>
+        </where>
+    </sql>
+    <select id="findAll" resultType="com.example.demo.entity.Item">
+        select
+            id,
+            item_name,
+            price,
+            groupid,
+            regist_date
+        from
+            item
+        <include refid="criteria" />
+        order by
+            id
+        limit
+            #{pageable.pageSize}
+        offset
+            #{pageable.offset}
+    </select>
+    <select id="countAll" resultType="long">
+        select
+            count(*)
+        from
+            item
+        <include refid="criteria" />
+    </select>
+</mapper>

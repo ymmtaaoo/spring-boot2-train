@@ -11,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.example.demo.core.exception.AppException;
 import com.example.demo.entity.Item;
 
 /**
@@ -35,15 +36,22 @@ public class BA0201Controller {
      * @return item検索画面
      */
     @GetMapping("/WBA0201/index")
-    public String index(ItemSearchForm form, Model model) {
+    public String index(ItemSearchForm form, Model model, BindingResult result) {
         
-        Page<Item> pages = itemSearchService.findAll(form.toCriteria(5));
-
-        // ページングに必要な情報
-        model.addAttribute("pages", pages);
-        // 検索結果リスト
-        model.addAttribute("itemList", pages.getContent());
-
+        try {
+            Page<Item> pages = itemSearchService.findAll(form.toCriteria(5));
+            if (pages != null) {
+                // ページングに必要な情報
+                model.addAttribute("pages", pages);
+                // 検索結果リスト
+                model.addAttribute("itemList", pages.getContent());
+            }
+        } catch(AppException e) {
+            result.reject(e.getMessageId());
+            return "BA0201/search";
+        }
+        
+        
         // 初期表示時は検索条件をクリアする
         form.clear();
         return "BA0201/search";
@@ -63,12 +71,19 @@ public class BA0201Controller {
             return "BA0201/search";
         }
         logger.info("item検索画面検索キー：item名称：" + form.getItemName());
-        Page<Item> pages = itemSearchService.findAll(form.toCriteria(5));
 
-        // ページングに必要な情報
-        model.addAttribute("pages", pages);
-         // 検索結果リスト
-        model.addAttribute("itemList", pages.getContent());
+        try {
+            Page<Item> pages = itemSearchService.findAll(form.toCriteria(5));
+            if (pages != null) {
+                // ページングに必要な情報
+                model.addAttribute("pages", pages);
+                // 検索結果リスト
+                model.addAttribute("itemList", pages.getContent());
+            }
+        } catch (AppException e){
+            result.reject(e.getMessageId());
+            return "BA0201/search";
+        }
         
         return "BA0201/search";
     }

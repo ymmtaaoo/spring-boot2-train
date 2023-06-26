@@ -17,13 +17,18 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                // item削除画面はSYSTEMロールを保持しているユーザのみアクセス可能
-                .antMatchers("/WBA0401/**").hasRole("SYSTEM")
+                // h2DBコンソールは認証しない
+                .mvcMatchers("/h2-console/**").permitAll()
                 // ヘルスチェックURLは認証しない
-                .antMatchers("/actuator/health").permitAll()
+                .mvcMatchers("/actuator/health").permitAll()
+                // item削除画面はSYSTEMロールを保持しているユーザのみアクセス可能
+                .mvcMatchers("/WBA0401/**").hasRole("SYSTEM")
                 .anyRequest().authenticated()
                 .and().formLogin().defaultSuccessUrl("/", true)
-                .and().logout((logout) -> logout.permitAll());
+                .and().logout((logout) -> logout.permitAll())
+                // h2DBコンソール向け設定
+                .csrf().ignoringAntMatchers("/h2-console/**")
+                .and().headers().frameOptions().sameOrigin();
         return http.build();
     }
 
