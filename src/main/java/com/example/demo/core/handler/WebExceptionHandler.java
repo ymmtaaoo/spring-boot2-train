@@ -5,24 +5,24 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.example.demo.core.exception.SystemException;
 
+import lombok.AllArgsConstructor;
+
 /**
  * WEB例外ハンドラー
  */
 @ControllerAdvice
+@AllArgsConstructor
 public class WebExceptionHandler {
 
+    private final MessageSource messages;
     /** ロガー */
-    Logger logger = LoggerFactory.getLogger(WebExceptionHandler.class);
-
-    @Autowired
-    MessageSource messages;
+    private static final Logger logger = LoggerFactory.getLogger(WebExceptionHandler.class);
 
     /**
      * システム例外処理

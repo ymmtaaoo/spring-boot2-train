@@ -52,4 +52,16 @@
             item
         <include refid="criteria" />
     </select>
+    <select id="findAllByItemName" resultType="com.example.demo.entity.Item">
+        select
+            id,
+            item_name,
+            price,
+            groupid,
+            regist_date
+        from
+            item
+        where
+            item_name = #{itemName}
+    </select>
 </mapper>

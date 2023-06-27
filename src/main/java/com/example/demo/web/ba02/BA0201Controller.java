@@ -2,7 +2,6 @@ package com.example.demo.web.ba02;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,19 +13,21 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.example.demo.core.exception.AppException;
 import com.example.demo.entity.Item;
 
+import lombok.AllArgsConstructor;
+
 /**
  * item検索画面コントローラ
  * 検索条件をセッションスコープ保持する
  */
 @Controller
 @SessionAttributes(types=ItemSearchForm.class)
+@AllArgsConstructor
 public class BA0201Controller {
 
-    @Autowired
-    private ItemSearchService itemSearchService;
+    private final ItemSearchService itemSearchService;
 
     /** ロガー */
-    Logger logger = LoggerFactory.getLogger(BA0201Controller.class);
+    private static final Logger logger = LoggerFactory.getLogger(BA0201Controller.class);
 
     /**
      * item検索画面を初期表示する。検索条件が未指定で検索した結果を指定件数分だけ表示する
@@ -37,7 +38,9 @@ public class BA0201Controller {
      */
     @GetMapping("/WBA0201/index")
     public String index(ItemSearchForm form, Model model, BindingResult result) {
-        
+        // 初期表示時は検索条件をクリアする
+        form.clear();
+
         try {
             Page<Item> pages = itemSearchService.findAll(form.toCriteria(5));
             if (pages != null) {
@@ -48,12 +51,8 @@ public class BA0201Controller {
             }
         } catch(AppException e) {
             result.reject(e.getMessageId());
-            return "BA0201/search";
         }
-        
-        
-        // 初期表示時は検索条件をクリアする
-        form.clear();
+
         return "BA0201/search";
     }
 
@@ -82,7 +81,6 @@ public class BA0201Controller {
             }
         } catch (AppException e){
             result.reject(e.getMessageId());
-            return "BA0201/search";
         }
         
         return "BA0201/search";

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 @ConditionalOnProperty(value = "web.security.db.auth")
 public class DbUserDetailsService implements UserDetailsService {
 
-    PasswordEncoder passwordEncoder = new Pbkdf2PasswordEncoder();
+    private PasswordEncoder passwordEncoder = new Pbkdf2PasswordEncoder();
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

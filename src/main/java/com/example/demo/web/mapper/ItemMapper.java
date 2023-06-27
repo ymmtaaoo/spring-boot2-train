@@ -12,4 +12,5 @@ public interface ItemMapper {
     int insertItem(Item item);
     List<Item> findAll(ItemSearchCriteria criteria);
     long countAll(ItemSearchCriteria criteria);
+    List<Item> findAllByItemName(String itemName);
 }

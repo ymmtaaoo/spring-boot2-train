@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,17 +18,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.demo.common.code.ItemGroup;
 import com.example.demo.core.exception.AppException;
 
+import lombok.AllArgsConstructor;
+
 /*
  * item登録画面コントローラ
  */
 @Controller
+@AllArgsConstructor
 public class BA0101Controller {
 
-    @Autowired
-    private ItemRegistService itemRegistService;
+    
+    private final ItemRegistService itemRegistService;
 
     /** ロガー */
-    Logger logger = LoggerFactory.getLogger(BA0101Controller.class);
+    private static final Logger logger = LoggerFactory.getLogger(BA0101Controller.class);
 
     /**
      * 表示

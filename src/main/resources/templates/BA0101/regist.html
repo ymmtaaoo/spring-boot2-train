@@ -7,8 +7,9 @@
 <body>
     <h1 >item登録画面</h1>
     <a th:href="@{/}" href="../AA0101/index.html">top</a>
-
+    
     <form method="POST" th:action="@{confirm}" action="./confirm.html" th:object="${itemForm}">
+        <div th:if="${#fields.hasGlobalErrors()}" th:errors="*{global}"></div>
         <div>
             <span style="display: inline-block;width: 100px;">ID</span>
             <input type="text" th:field="*{id}" value="1" />

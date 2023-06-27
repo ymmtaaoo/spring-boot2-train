@@ -1,21 +1,21 @@
 package com.example.demo.web.ba01;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
-
 import com.example.demo.core.exception.AppException;
-import com.example.demo.core.exception.SystemException;
 import com.example.demo.entity.Item;
 import com.example.demo.web.mapper.ItemMapper;
+import lombok.AllArgsConstructor;
 
 /**
  * item登録サービス
  */
 @Service
+@AllArgsConstructor
 public class ItemRegistService {
     
-    @Autowired
-    private ItemMapper mapper;
+    private final ItemMapper mapper;
 
     /**
      * itemを登録する
@@ -23,27 +23,22 @@ public class ItemRegistService {
      */
     public void registItem(Item item) {
         
-        if (item.getItemName().startsWith("1")) {
-            // ダミー例外スロー
-            throw new AppException("ME001", "itemName");
+        // 同一ItemNameの合計priceが3000円以上の場合、チェックエラー
+        List<Item> list = mapper.findAllByItemName(item.getItemName());
+        Integer totalPrice = item.getPrice();
+        for (Item item2 : list) {
+            totalPrice += item2.getPrice();
+        }
+        if (totalPrice >= 3000) {
+            throw new AppException("ME001");
         }
 
-        if (item.getItemName().startsWith("2")) {
-            // ダミー例外スロー
-            throw new SystemException("ME999");
+        try {
+            // 登録処理
+            mapper.insertItem(item);
+        } catch (DuplicateKeyException e) {
+            // キー重複エラー
+            throw new AppException("ME004", e);
         }
-
-        String a = null;
-        if (item.getItemName().startsWith("3")) {
-            // ダミー例外スロー
-            System.out.println(a.equals("a"));
-        }
-
-        mapper.insertItem(item);
-
-        //Itemクラスにsetter,getterは実装していないが「item.getItemName()」のビルドができる。
-        //Lombokの機能で「@Data」アノテーションをItemクラスに付けることでsetter,getterが生成されている。
-        System.out.println(item.getItemName());
-
     }
 }

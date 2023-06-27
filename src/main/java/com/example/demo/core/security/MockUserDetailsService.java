@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 @ConditionalOnProperty(value = "web.security.db.auth", havingValue ="false" , matchIfMissing = true)
 public class MockUserDetailsService implements UserDetailsService {
 
-    PasswordEncoder passwordEncoder = new Pbkdf2PasswordEncoder();
+    private PasswordEncoder passwordEncoder = new Pbkdf2PasswordEncoder();
 
     /**
      * ダミーユーザを生成する。
