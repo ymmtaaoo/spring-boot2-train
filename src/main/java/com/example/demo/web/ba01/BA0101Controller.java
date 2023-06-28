@@ -18,16 +18,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.demo.common.code.ItemGroup;
 import com.example.demo.core.exception.AppException;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 /*
  * item登録画面コントローラ
  */
 @Controller
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BA0101Controller {
 
-    
+    /** item登録サービス */
     private final ItemRegistService itemRegistService;
 
     /** ロガー */
@@ -41,8 +41,11 @@ public class BA0101Controller {
     @GetMapping("/WBA0101/index")
     public String index(Model model) {
         logger.info("登録画面表示");
+
+        // ダミーデフォルトデータ
         model.addAttribute("itemForm", 
             new ItemForm(1, "ペン", 1000, "CD-A01", LocalDate.now()));
+            
         return "BA0101/regist";
     }
 

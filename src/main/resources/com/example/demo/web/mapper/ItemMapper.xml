@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.web.mapper.ItemMapper">
+    <!-- 登録 -->
     <insert id="insertItem">
         insert into item(
             id,
@@ -16,6 +17,8 @@
             #{registDate}
         )
     </insert>
+
+    <!-- 条件 -->
     <sql id="criteria">
         <where>
             <if test="itemName != null and itemName != ''">
@@ -28,6 +31,8 @@
             </if>
         </where>
     </sql>
+
+    <!-- 全件検索 -->
     <select id="findAll" resultType="com.example.demo.entity.Item">
         select
             id,
@@ -45,6 +50,8 @@
         offset
             #{pageable.offset}
     </select>
+
+    <!-- 全件カウント -->
     <select id="countAll" resultType="long">
         select
             count(*)
@@ -52,6 +59,8 @@
             item
         <include refid="criteria" />
     </select>
+
+    <!-- 全件検索item名称指定 -->
     <select id="findAllByItemName" resultType="com.example.demo.entity.Item">
         select
             id,

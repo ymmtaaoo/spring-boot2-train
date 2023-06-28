@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.example.demo.core.exception.AppException;
 import com.example.demo.entity.Item;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 /**
  * item検索画面コントローラ
@@ -21,9 +21,10 @@ import lombok.AllArgsConstructor;
  */
 @Controller
 @SessionAttributes(types=ItemSearchForm.class)
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BA0201Controller {
 
+    /** item検索サービス */
     private final ItemSearchService itemSearchService;
 
     /** ロガー */

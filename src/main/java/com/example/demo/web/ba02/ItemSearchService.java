@@ -10,15 +10,16 @@ import com.example.demo.core.exception.AppException;
 import com.example.demo.entity.Item;
 import com.example.demo.web.mapper.ItemMapper;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 /**
  * item検索サービス
  */
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ItemSearchService {
     
+    /** itemMapper */
     private final ItemMapper mapper;
 
     /** 最大検索結果件数 */

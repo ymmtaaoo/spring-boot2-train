@@ -1,20 +1,24 @@
 package com.example.demo.web.ba01;
 
 import java.util.List;
+
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+
 import com.example.demo.core.exception.AppException;
 import com.example.demo.entity.Item;
 import com.example.demo.web.mapper.ItemMapper;
-import lombok.AllArgsConstructor;
+
+import lombok.RequiredArgsConstructor;
 
 /**
  * item登録サービス
  */
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ItemRegistService {
     
+    /** itemMapper */
     private final ItemMapper mapper;
 
     /**

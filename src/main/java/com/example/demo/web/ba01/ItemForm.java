@@ -39,7 +39,7 @@ public class ItemForm {
     @DateTimeFormat(pattern = "uuuu-MM-dd")
     private LocalDate registDate;
 
-    @AssertTrue(message = "{MC001}")
+    @AssertTrue(message = "{ME005}")
     public boolean isBunguPrice() {
         if (ItemGroup.BUNGU.getCode().equals(groupid)) {
             if (price >= 5000) {
