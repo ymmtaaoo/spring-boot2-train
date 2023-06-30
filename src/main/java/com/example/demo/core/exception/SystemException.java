@@ -2,6 +2,8 @@ package com.example.demo.core.exception;
 
 /**
  * システム例外
+ * 想定外のシステムエラーを検知した場合にスローする。
+ * 基本的に業務処理の継続は不可能で、システムエラー画面へ遷移する。
  */
 public class SystemException extends RuntimeException {
     /** メッセージID */

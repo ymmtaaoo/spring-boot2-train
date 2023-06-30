@@ -16,25 +16,36 @@ import lombok.Data;
 @Data
 public class ItemSearchForm implements Serializable {
 
+    /**
+     * itemName
+     * 10桁チェック
+     */
     @Length(max=10)
     private String itemName;
 
+    /**
+     * price
+     * 最大値10,000チェック
+     */
     @Range(max=10000)
     private Integer price;
 
+    /**
+     * ページ数
+     */
     private Integer page;
 
     /**
      * 検索条件を生成する
-     * @param size 1ページたりの件数
+     * @param pageSize 1ページたりの件数
      * @return 検索条件
      */
-    public ItemSearchCriteria toCriteria(int size) {
+    public ItemSearchCriteria toCriteria(int pageSize) {
         
         ItemSearchCriteria criteria = new ItemSearchCriteria();
         BeanUtils.copyProperties(this, criteria);
 
-        Pageable pageable = PageRequest.of(page != null ? page : 0, size);
+        Pageable pageable = PageRequest.of(page != null ? page : 0, pageSize);
         criteria.setPageable(pageable);
         return criteria;
     }

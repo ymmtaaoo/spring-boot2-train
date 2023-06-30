@@ -17,7 +17,10 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * item検索画面コントローラ
- * 検索条件をセッションスコープ保持する
+ * 
+ * 検索画面処理表示時には検索条件をリセットして、検索結果を初期表示する。
+ * 検索画面処理表示以外では、検索条件をセッションスコープ保持する。
+ * 1ページにページングを行う。
  */
 @Controller
 @SessionAttributes(types=ItemSearchForm.class)
@@ -29,6 +32,9 @@ public class BA0201Controller {
 
     /** ロガー */
     private static final Logger logger = LoggerFactory.getLogger(BA0201Controller.class);
+
+    /** 1ページあたりの表示件数 */
+    private static final int PAGE_SIZE = 5;
 
     /**
      * item検索画面を初期表示する。検索条件が未指定で検索した結果を指定件数分だけ表示する
@@ -43,7 +49,7 @@ public class BA0201Controller {
         form.clear();
 
         try {
-            Page<Item> pages = itemSearchService.findAll(form.toCriteria(5));
+            Page<Item> pages = itemSearchService.findAll(form.toCriteria(PAGE_SIZE));
             if (pages != null) {
                 // ページングに必要な情報
                 model.addAttribute("pages", pages);
@@ -73,7 +79,7 @@ public class BA0201Controller {
         logger.info("item検索画面検索キー：item名称：" + form.getItemName());
 
         try {
-            Page<Item> pages = itemSearchService.findAll(form.toCriteria(5));
+            Page<Item> pages = itemSearchService.findAll(form.toCriteria(PAGE_SIZE));
             if (pages != null) {
                 // ページングに必要な情報
                 model.addAttribute("pages", pages);

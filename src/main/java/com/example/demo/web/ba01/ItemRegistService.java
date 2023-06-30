@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.core.exception.AppException;
 import com.example.demo.entity.Item;
@@ -25,9 +26,10 @@ public class ItemRegistService {
      * itemを登録する
      * @param item Item
      */
+    @Transactional
     public void registItem(Item item) {
         
-        // 同一ItemNameの合計priceが3000円以上の場合、チェックエラー
+        // 同一ItemNameの合計priceが3000円以上の場合、業務エラー
         List<Item> list = mapper.findAllByItemName(item.getItemName());
         Integer totalPrice = item.getPrice();
         for (Item item2 : list) {

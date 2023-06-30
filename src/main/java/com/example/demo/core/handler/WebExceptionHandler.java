@@ -11,21 +11,23 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.example.demo.core.exception.SystemException;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 /**
  * WEB例外ハンドラー
  */
 @ControllerAdvice
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class WebExceptionHandler {
-
+    
+    /** メッセージ */
     private final MessageSource messages;
     /** ロガー */
     private static final Logger logger = LoggerFactory.getLogger(WebExceptionHandler.class);
 
     /**
-     * システム例外処理
+     * システム例外の処理
+     * ログ出力を行い、システムエラー画面へ遷移する。
      * @param t システム例外
      * @return エラー画面
      */
@@ -36,7 +38,8 @@ public class WebExceptionHandler {
     }
 
     /**
-     * 例外処理
+     * 予期せぬ例外の処理
+     * ログ出力を行い、システムエラー画面へ遷移する。
      * @param t 例外
      * @return エラー画面
      */

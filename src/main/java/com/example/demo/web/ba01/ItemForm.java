@@ -24,25 +24,50 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ItemForm {
+
+    /**
+     * ID
+     * 必須チェック
+     */
     @NotNull
     private Integer id;
 
+    /**
+     * itemName
+     * 10桁チェック
+     */
     @Length(max=10)
     private String itemName;
 
+    /**
+     * price
+     * 最大値10,000チェック
+     */
     @Range(max=10000)
     private Integer price;
 
+    /**
+     * 分類ID
+     * 6桁チェック
+     */
     @Length(max=6)
     private String groupid;
 
+    /**
+     * 登録日
+     * 日付フォーマットチェック
+     */
     @DateTimeFormat(pattern = "uuuu-MM-dd")
     private LocalDate registDate;
 
+    /**
+     * 相関チェック：分類が文具かつ価格が2000円未満であること
+     * @return 結果
+     */
     @AssertTrue(message = "{ME005}")
     public boolean isBunguPrice() {
         if (ItemGroup.BUNGU.getCode().equals(groupid)) {
-            if (price >= 5000) {
+            if (price >= 2000) {
                 return false;
             }
         }

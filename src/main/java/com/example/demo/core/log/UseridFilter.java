@@ -28,7 +28,9 @@ public class UseridFilter implements OrderedFilter {
 			Authentication authentication = securityContext.getAuthentication();
 			if (authentication != null) {
 				String userid = authentication.getName();
+				// アクセスログ出力用にユーザIDをリクエストスコープに保管する。
 				request.setAttribute("access-converter-userid", userid);
+				// 業務ログ出力用にユーザIDをMDCに保管する。
 				MDC.put("userid", userid);
 			}
 			chain.doFilter(request, response);

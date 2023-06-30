@@ -2,6 +2,8 @@ package com.example.demo.core.exception;
 
 /**
  * アプリケーション例外
+ * 業務エラーを検知した場合にスローする。
+ * 基本的には再処理を促すメッセージを通知する。
  */
 public class AppException extends RuntimeException {
 

@@ -26,7 +26,9 @@ public class SessionidFilter implements OrderedFilter {
 			HttpSession session = ((HttpServletRequest) request).getSession(false);
 			if (session != null) {
 				String sessionid = session.getId();
+				// アクセスログ出力用にセッションIDをリクエストスコープに保管する。
 				request.setAttribute("access-converter-sessionid", sessionid);
+				// 業務ログ出力用にセッションIDをMDCに保管する。
 				MDC.put("sessionid", sessionid);
 			}
 			chain.doFilter(request, response);

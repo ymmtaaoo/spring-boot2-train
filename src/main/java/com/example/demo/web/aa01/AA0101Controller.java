@@ -4,14 +4,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
- * トップ画面コントローラ
+ * TOP画面コントローラ
  */
 @Controller
 public class AA0101Controller {
 
     /**
-     * トップ画面表示する。itemを全件表示する
-     * @return top画面
+     * TOP画面表示する。
+     * @return TOP画面
      */
     @GetMapping("/")
     public String top() {

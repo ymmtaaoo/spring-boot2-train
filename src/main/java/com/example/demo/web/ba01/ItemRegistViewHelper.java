@@ -15,6 +15,7 @@ public class ItemRegistViewHelper {
      * @return 分類名
      */
     public String getGroupName(String groupid) {
+        // コードクラスで管理しているIDからラベルを取得
         return ItemGroup.getLabel(groupid);
     }
 }

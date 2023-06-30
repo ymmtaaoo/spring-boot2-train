@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1 >item検索画面</h1>
-    <a th:href="@{/}" href="../AA0101/index.html">top</a>
+    <a th:href="@{/}" href="../AA0101/index.html">TOP画面へ</a>
     
     <form method="GET" th:action="@{/WBA0201/search}" action="./search.html" th:object="${itemSearchForm}">
         <div th:if="${#fields.hasGlobalErrors()}" th:errors="*{global}"></div>

@@ -22,6 +22,9 @@ import lombok.RequiredArgsConstructor;
 
 /*
  * item登録画面コントローラ
+ * 
+ * 以下のような画面遷移を行う
+ * 登録画面⇒確認画面⇒完了画面
  */
 @Controller
 @RequiredArgsConstructor
@@ -57,9 +60,12 @@ public class BA0101Controller {
      */
     @PostMapping("/WBA0101/confirm")
     public String confirm(@Validated ItemForm itemForm, BindingResult result) {
+        
         if (result.hasErrors()) {
+            // フォームクラスによる単項目チェックエラーがある場合、登録画面を表示
             return "/BA0101/regist";
         }
+        // 確認画面を表示
         return "BA0101/confirm";
     }
 
@@ -73,10 +79,12 @@ public class BA0101Controller {
     public String regist(@Validated ItemForm itemForm, BindingResult result) {
 
         if (result.hasErrors()) {
+            // フォームクラスによる単項目チェックエラーがある場合、登録画面を表示
             return "/BA0101/regist";
         }
 
         try {
+            // 登録処理
             itemRegistService.registItem(itemForm.toItem());
         } catch(AppException e) {
             if (e.getField() != null) {
