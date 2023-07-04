@@ -7,9 +7,42 @@
 <body>
     <h1 >item詳細画面</h1>
     <a th:href="@{/}" href="../AA0101/index.html">TOP画面へ</a>
+
     <div>
-    未実装
+        <span style="display: inline-block;width: 150px;">ID</span>
+        <span th:text="${itemForm.id}"></span>
     </div>
+
+    <div>
+        <span style="display: inline-block;width: 150px;">ITEM NAME</span>
+        <span th:text="${itemForm.itemName}"></span>
+    </div>
+
+    <div>
+        <span style="display: inline-block;width: 150px;">PRICE</span>
+        <span th:text="${itemForm.price}"></span>
+    </div>
+
+    <div>
+        <span style="display: inline-block;width: 150px;">分類</span>
+        <span th:text="${groupName}"></span>
+    </div>
+
+    <div>
+        <span style="display: inline-block;width: 150px;">登録日</span>
+        <span th:text="${itemForm.registDate}"></span>
+    </div>
+
+    <div>
+        <span style="display: inline-block;width: 150px;">バージョンNo</span>
+        <span th:text="${itemForm.versionNo}"></span>
+    </div>
+
+    
+    <button type="submit">戻る</button>
+    <button type="submit">更新</button>
+    <button type="submit">削除</button>
+
     
 </body>
 </html>

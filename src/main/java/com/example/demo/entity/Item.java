@@ -18,4 +18,5 @@ public class Item {
     private Integer price;
     private String groupid;
     private LocalDate registDate;
+    private Integer versionNo;
 }

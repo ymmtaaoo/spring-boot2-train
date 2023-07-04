@@ -8,13 +8,15 @@
             item_name,
             price,
             groupid,
-            regist_date
+            regist_date,
+            version_no
         ) values(
             #{id},
             #{itemName},
             #{price},
             #{groupid},
-            #{registDate}
+            #{registDate},
+            0
         )
     </insert>
 
@@ -39,7 +41,8 @@
             item_name,
             price,
             groupid,
-            regist_date
+            regist_date,
+            version_no
         from
             item
         <include refid="criteria" />
@@ -67,10 +70,50 @@
             item_name,
             price,
             groupid,
-            regist_date
+            regist_date,
+            version_no
         from
             item
         where
             item_name = #{itemName}
     </select>
+
+    <!-- 検索id指定 -->
+    <select id="findItemById" resultType="com.example.demo.entity.Item">
+        select
+            id,
+            item_name,
+            price,
+            groupid,
+            regist_date,
+            version_no
+        from
+            item
+        where
+            id = #{id}
+    </select>
+
+    <!-- 更新登録 -->
+    <update id="updateItem">
+        update
+            item
+        set
+            item_name = #{itemName},
+            price = #{price},
+            groupid = #{groupid},
+            regist_date = #{registDate}
+            verion_no = #{verionNo} + 1
+        where
+            id = #{id} and
+            verion_no = #{verionNo} 
+    </update>
+
+    <!-- 削除 -->
+    <delete id="deleteItem">
+        delete from
+            item
+        where
+            id = #{id} and
+            verion_no = #{verionNo} 
+    </delete>
 </mapper>

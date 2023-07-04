@@ -43,7 +43,7 @@ public class ItemSearchServiceTest {
 
         when(itemMapper.countAll(any())).thenReturn(1L);
         List<Item> list = new ArrayList<>();
-        list.add(new Item(1, "ペン", 100, "CD-A01", LocalDate.now()));
+        list.add(new Item(1, "ペン", 100, "CD-A01", LocalDate.now(), 0));
         when(itemMapper.findAll(any())).thenReturn(list);
 
         ItemSearchCriteria criteria = new ItemSearchCriteria(null, null, PageRequest.of(0, 5));
@@ -54,5 +54,6 @@ public class ItemSearchServiceTest {
         assertEquals("ペン", pages.getContent().get(0).getItemName());
         assertEquals(100, pages.getContent().get(0).getPrice());
         assertEquals("CD-A01", pages.getContent().get(0).getGroupid());
+        assertEquals("0", pages.getContent().get(0).getVersionNo());
     }
 }
