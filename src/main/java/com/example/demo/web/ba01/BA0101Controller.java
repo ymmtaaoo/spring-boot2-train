@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,17 +37,22 @@ public class BA0101Controller {
 
     /**
      * 表示
-     * @param model Model
+     * @param itemForm ItemForm
      * @return 登録画面
      */
     @GetMapping("/WBA0101/index")
-    public String index(Model model) {
+    public String index(ItemForm itemForm) {
+
+        // ログ出力
         logger.info("登録画面表示");
 
-        // ダミーデフォルトデータ
-        model.addAttribute("itemForm", 
-            new ItemForm(1, "ペン", 1000, "CD-A01", LocalDate.now()));
-            
+        // 開発用。ダミーデータを初期表示する
+        itemForm.setId(13);
+        itemForm.setItemName("ペン");
+        itemForm.setPrice(1000);
+        itemForm.setGroupid("CD-A01");
+        itemForm.setRegistDate(LocalDate.now());
+
         return "BA0101/regist";
     }
 
@@ -56,7 +60,7 @@ public class BA0101Controller {
      * 確認
      * @param itemForm ItemForm
      * @param result BindingResult
-     * @return 確認画面 or 登録画面
+     * @return 正常なら確認画面 or 入力エラーなら登録画面
      */
     @PostMapping("/WBA0101/confirm")
     public String confirm(@Validated ItemForm itemForm, BindingResult result) {

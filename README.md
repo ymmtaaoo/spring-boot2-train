@@ -95,7 +95,7 @@ https://github.com/namickey/spring-boot2-try
 * 組み込みTomcat 9
 * 組み込みMaven 3
 
-# ディレクトリ階層
+## ディレクトリ階層
 ```
 C:.
 │  .gitignore
@@ -363,7 +363,7 @@ Ctrl + C
 * コンテナイメージとしてデプロイ
 * クラウド環境の自動構築及びデプロイ自動化
 
-# 次にGitHubからAWSへの自動デプロイを学ぼう
+## 次にGitHubからAWSへの自動デプロイを学ぼう
 
 https://github.com/namickey/spring-boot2-aws-terraform
 

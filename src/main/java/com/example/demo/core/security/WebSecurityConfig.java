@@ -3,8 +3,6 @@ package com.example.demo.core.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 /**
@@ -23,6 +21,7 @@ public class WebSecurityConfig {
                 .mvcMatchers("/actuator/health").permitAll()
                 // item削除画面はSYSTEMロールを保持しているユーザのみアクセス可能
                 .mvcMatchers("/WBA0401/**").hasRole("SYSTEM")
+                // その他は認証する
                 .anyRequest().authenticated()
                 // ログイン
                 .and().formLogin().defaultSuccessUrl("/", true)
@@ -32,10 +31,5 @@ public class WebSecurityConfig {
                 .csrf().ignoringAntMatchers("/h2-console/**")
                 .and().headers().frameOptions().sameOrigin();
         return http.build();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new Pbkdf2PasswordEncoder();
     }
 }

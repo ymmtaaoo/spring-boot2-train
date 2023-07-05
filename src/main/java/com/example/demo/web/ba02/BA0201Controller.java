@@ -39,12 +39,13 @@ public class BA0201Controller {
     /**
      * item検索画面を初期表示する。検索条件が未指定で検索した結果を指定件数分だけ表示する
      * 初期表示と検索条件が未指定の場合のページング
-     * @param model Model
      * @param form ItemSearchForm
+     * @param result BindingResult
+     * @param model Model
      * @return item検索画面
      */
     @GetMapping("/WBA0201/index")
-    public String index(ItemSearchForm form, Model model, BindingResult result) {
+    public String index(@Validated ItemSearchForm form, BindingResult result, Model model) {
         // 初期表示時は検索条件をクリアする
         form.clear();
 
@@ -66,13 +67,13 @@ public class BA0201Controller {
     /**
      * item検索を行う。指定された検索条件で検索した結果を指定件数分だけ表示する
      * 検索ボタン押下時と検索ボタン押下後のページング
-     * @param model Model
      * @param form ItemSearchForm
      * @param result BindingResult
+     * @param model Model
      * @return item検索画面
      */
     @GetMapping("/WBA0201/search")
-    public String search(Model model, @Validated ItemSearchForm form, BindingResult result) {
+    public String search(@Validated ItemSearchForm form, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "BA0201/search";
         }
