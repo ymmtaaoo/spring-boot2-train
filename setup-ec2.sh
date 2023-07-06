@@ -13,4 +13,4 @@ printenv
 cd /home/ec2-user/spring-boot2-train
 
 # spring-boot:run
-/bin/bash mvnw spring-boot:run &
+hohup /bin/bash mvnw spring-boot:run &
