@@ -1,10 +1,16 @@
 #!/bin/bash
 
+cd /home/ec2-user
+ls -la
+
 # JAVA_HOME
 export JAVA_HOME="/usr/lib/jvm/java-11-amazon-corretto.x86_64/"
 
+echo printenv
+printenv
+
 # move
-cd spring-boot2-train
+cd /home/ec2-user/spring-boot2-train
 
 # spring-boot:run
-bash mvnw spring-boot:run &
+/bin/bash mvnw spring-boot:run &
