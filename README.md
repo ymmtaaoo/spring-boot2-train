@@ -363,6 +363,9 @@ Ctrl + C
 * コンテナイメージとしてデプロイ
 * クラウド環境の自動構築及びデプロイ自動化
 
+## 次にjavascript + WEBAPIを学ぼう
+未着手  
+
 ## 次にGitHubからAWSへの自動デプロイを学ぼう
 
 https://github.com/namickey/spring-boot2-aws-terraform
