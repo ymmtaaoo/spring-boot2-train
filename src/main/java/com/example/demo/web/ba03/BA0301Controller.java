@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.example.demo.common.code.ItemGroup;
+import com.example.demo.core.exception.AppException;
 import com.example.demo.entity.Item;
 
 import lombok.RequiredArgsConstructor;
@@ -35,10 +35,12 @@ public class BA0301Controller {
     @GetMapping("/WBA0301/index")
     public String index(ItemDetailForm form, BindingResult bindingResult, Model model) {
         logger.info("詳細画面表示");
+        if (form.getId() == null) {
+             throw new AppException("ME999");
+        }
 
         Item item = itemDetailService.findItemById(form.getId());
         model.addAttribute("itemForm", item);
-        model.addAttribute("groupName", ItemGroup.getLabel(item.getGroupid()));
         return "BA0301/index";
     }
 

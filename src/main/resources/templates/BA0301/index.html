@@ -25,12 +25,12 @@
 
     <div>
         <span style="display: inline-block;width: 150px;">分類</span>
-        <span th:text="${groupName}"></span>
+        <span th:text="*{@itemRegistViewHelper.getGroupName(itemForm.groupid)}" >文具</span>
     </div>
 
     <div>
         <span style="display: inline-block;width: 150px;">登録日</span>
-        <span th:text="${itemForm.registDate}"></span>
+        <span th:text="*{#temporals.format(itemForm.registDate, 'uuuu/MM/dd')}"></span>
     </div>
 
     <div>
@@ -39,7 +39,7 @@
     </div>
 
     <li><a th:href="@{/WBA0201/search}" href="../BA0201/search.html">戻る</a></li>
-    <li><a th:href="@{/WBA0501/index}" href="../BA0501/index.html">変更・削除画面へ</a></li>
+    <li><a th:href="@{/WBA0501/index(id=${itemForm.id})}" href="../BA0501/index.html">変更・削除画面へ</a></li>
     
 </body>
 </html>
