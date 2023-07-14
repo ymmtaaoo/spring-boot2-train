@@ -1,3 +1,14 @@
+## 追加機能
+・照会画面作成(BA03)
+・変更削除画面作成(BA05) 現在作成中
+・CSS実装 現在作成中
+
+## VSCodeデバックモード実行方法
+以下を押下
+![image](https://github.com/ymmtaaoo/spring-boot2-train/assets/52730146/d176abf7-26b6-4e0e-bbe3-763580abf5d4)
+
+
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 # spring-boot2-train
 
 Spring-Bootで、がっちり業務アプリケーション開発
