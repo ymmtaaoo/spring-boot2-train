@@ -1,8 +1,12 @@
 ## 追加機能
 * 照会画面作成(BA03)
 * 変更削除画面作成(BA05) 現在作成中
-* CSS実装 現在作成中
-
+* CSS実装(Tailwind CSS)  現在作成中
+  
+## Tailwind CSSとは
+  - CSSフレームワークの一つです。他のCSSフレームワークではBootstrap、BulmaやMaterial UIなどがある。
+  - Tailwind CSSの特徴・メリットは"Bootstrap などのフレームワークではコンポーネントが事前に準備されていることでサイトデザインを効率的に行うことができる反面、同じデザインを使うためオリジナルティがないという欠点があると言われています。それに比べて Tailwind CSS ではコンポーネントが準備されていないため、同じボタンというコンポーネントを作成するにも各自が異なる utility class を適用して作成していくことになるため結果としてオリジナリティの高いサイトを作成することができます。"と以下のサイトで書かれていました。
+  - https://reffect.co.jp/html/tailwindcss-for-beginners/
 ## VSCodeデバックモード実行方法
 以下を押下
 ![image](https://github.com/ymmtaaoo/spring-boot2-train/assets/52730146/d176abf7-26b6-4e0e-bbe3-763580abf5d4)
