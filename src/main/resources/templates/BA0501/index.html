@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>item変更・削除画面</title>
+</head>
+<body>
+    <h1 >item変更・削除画面</h1>
+    <a th:href="@{/}" href="../AA0101/index.html" 
+        class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-blue-600 border border-blue-700 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        >TOP画面へ</a>
+    <div class="flex items-center justify-center p-12">
+        <form method="POST" th:action="@{confirm}" action="./confirm.html" th:object="${itemUpdateDeleteForm}">
+            <div th:if="${#fields.hasGlobalErrors()}" th:errors="*{global}" class="mb-5"></div>
+            <div class="mb-5">
+                <label class="mb-3 block text-base font-medium text-[#07074D]"
+                >ID</label>
+
+                <input type="text" th:field="*{id}" value="1"
+                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                />
+                <div th:if="${#fields.hasErrors('id')}" th:errors="*{id}" />
+            </div>
+
+            <div class="mb-5">
+                <label class="mb-3 block text-base font-medium text-[#07074D]"
+                >ITEM NAME</label>
+                <input type="text" th:field="*{itemName}" value="ノート" 
+                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                />
+                <div th:if="${#fields.hasErrors('itemName')}" th:errors="*{itemName}" />
+            </div>
+
+            <div class="mb-5">
+                <label class="mb-3 block text-base font-medium text-[#07074D]"
+                >PRICE</label>
+                <input type="text" th:field="*{price}" value="3000"
+                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                />
+                <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" />
+                <div th:if="${#fields.hasErrors('bunguPrice')}" th:errors="*{bunguPrice}" />
+            </div>
+
+            <div class="mb-5">
+                <label for="groupid" class="mb-3 block text-base font-medium text-[#07074D]"><span>分類</span></label>
+                <select
+                th:field="*{groupid}"
+                class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                    <option value=""></option>
+                    <option
+                    th:each="group : ${groups}"
+                    th:value="${group.code}"
+                    th:text="${group.label}"
+                    selected
+                    >
+                    文具
+                    </option>
+                </select>
+                <span th:if="${#fields.hasErrors('groupid')}" th:errors="*{groupid}"></span>
+            </div>
+
+            <div class="mb-5">
+                <label class="mb-3 block text-base font-medium text-[#07074D]">登録日</label>
+                <input type="date" th:field="*{registDate}" value="2023-06-01"
+                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                />
+                <div th:if="${#fields.hasErrors('registDate')}" th:errors="*{registDate}" />
+            </div>
+
+            <div>
+                <a th:href="@{/WBA0301/index(id=*{id})}" href="../BA0301/index.html" class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-blue-600 border border-blue-700 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">戻る</a>
+                <button type="submit" name="update" class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-blue-600 border border-blue-700 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">更新</button>
+                <button type="submit" name="delete" class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-blue-600 border border-blue-700 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">削除</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
