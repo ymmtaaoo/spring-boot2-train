@@ -17,10 +17,11 @@
                 <label class="mb-3 block text-base font-medium text-[#07074D]"
                 >ID</label>
 
-                <input type="text" th:field="*{id}" value="1"
+                <input type="text" th:field="*{id}" value="1" readonly
                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                 />
                 <div th:if="${#fields.hasErrors('id')}" th:errors="*{id}" />
+                <input type="hidden" th:field="*{versionNo}" />
             </div>
 
             <div class="mb-5">
@@ -70,7 +71,7 @@
 
             <div>
                 <a th:href="@{/WBA0301/index(id=*{id})}" href="../BA0301/index.html" class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-blue-600 border border-blue-700 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">戻る</a>
-                <button type="submit" name="update" class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-blue-600 border border-blue-700 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">更新</button>
+                <button type="submit" name="updateConfirm" class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-blue-600 border border-blue-700 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">更新</button>
                 <button type="submit" name="delete" class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-blue-600 border border-blue-700 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">削除</button>
             </div>
         </form>

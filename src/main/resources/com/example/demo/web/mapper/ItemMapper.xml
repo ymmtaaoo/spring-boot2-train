@@ -101,11 +101,11 @@
             item_name = #{itemName},
             price = #{price},
             groupid = #{groupid},
-            regist_date = #{registDate}
-            verion_no = #{versionNo} + 1
+            regist_date = #{registDate},
+            version_no = #{versionNo} + 1
         where
             id = #{id} and
-            verion_no = #{versionNo} 
+            version_no = #{versionNo} 
     </update>
 
     <!-- 削除 -->
@@ -114,6 +114,6 @@
             item
         where
             id = #{id} and
-            verion_no = #{versionNo} 
+            version_no = #{versionNo} 
     </delete>
 </mapper>

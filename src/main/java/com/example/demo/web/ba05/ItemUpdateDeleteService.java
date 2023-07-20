@@ -2,7 +2,6 @@ package com.example.demo.web.ba05;
 
 import java.util.List;
 
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,13 +51,24 @@ public class ItemUpdateDeleteService {
         if (totalPrice >= 3000) {
             throw new AppException("ME001");
         }
+        // 更新処理
+        int updateCount = mapper.updateItem(item);
+        if (updateCount == 0) {
+            throw new AppException("ME007");
+        }
+    }
 
-        try {
-            // 登録処理
-            mapper.insertItem(item);
-        } catch (DuplicateKeyException e) {
-            // キー重複エラー
-            throw new AppException("ME004", e);
+    /**
+     * itemを削除する
+     * @param id ID
+     * @param versionNo バージョンNo
+     */
+    @Transactional
+    public void deleteItem(Integer id, Integer versionNo) {
+
+        int deleteCount = mapper.deleteItem(id, versionNo);
+        if (deleteCount == 0) {
+            throw new AppException("ME008");
         }
     }
 }
