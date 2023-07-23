@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script th:src="@{/js/ba0501.js}" src="../../static/js/ba0501.js"></script>
     <title>item変更・削除画面</title>
 </head>
 <body>
@@ -72,9 +73,10 @@
             <div>
                 <a th:href="@{/WBA0301/index(id=*{id})}" href="../BA0301/index.html" class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-blue-600 border border-blue-700 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">戻る</a>
                 <button type="submit" name="updateConfirm" class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-blue-600 border border-blue-700 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">更新</button>
-                <button type="submit" name="delete" class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-blue-600 border border-blue-700 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">削除</button>
+                <button type="submit" name="delete" id="delete" class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-blue-600 border border-blue-700 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">削除</button>
             </div>
         </form>
     </div>
+    
 </body>
 </html>
