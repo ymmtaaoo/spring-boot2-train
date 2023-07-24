@@ -12,12 +12,13 @@
 ## JavaScript
   - 削除ボタン押下時に確認ダイアログを出し、OK押下で削除、キャンセル押下で中断。
   - JavaScriptを書く場所や読み込む場所はどこがいいのか？  
-    https://codeaid.jp/js-load/
+  https://codeaid.jp/js-load/
   - addEventListener使い方
-    https://qiita.com/mzmz__02/items/873118fbd8723c44956d
+  https://qiita.com/mzmz__02/items/873118fbd8723c44956d
   - onclickとaddEventListenerの違い　→onclickだと処理を上書いてしまうためaddEventListenerを使う。
-    https://qiita.com/KKKarin/items/ccb8ed361ab9acd1f9cf
-    
+  https://qiita.com/KKKarin/items/ccb8ed361ab9acd1f9cf
+  - fetchメソッド使い方
+  https://www.webdesignleaves.com/pr/jquery/fetch-api-basic.html
 ## VSCodeデバックモード実行方法
 以下を押下
 ![image](https://github.com/ymmtaaoo/spring-boot2-train/assets/52730146/d176abf7-26b6-4e0e-bbe3-763580abf5d4)
