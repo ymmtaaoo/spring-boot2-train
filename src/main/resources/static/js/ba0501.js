@@ -1,5 +1,7 @@
-window.onload = function () {
-    document.getElementById('delete').onclick = function() {
+//BA05削除ボタンのイベント
+window.addEventListener('load', function() {
+
+    document.getElementById("delete").addEventListener('click', function() {
         if (confirm("データを削除してもよろしいですか？")) {
             //削除処理実行
         } else {
@@ -7,5 +9,5 @@ window.onload = function () {
             alert("キャンセルがクリックされました。");
             return false;
         }
-    };
-};
+    });
+});
