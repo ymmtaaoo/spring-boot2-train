@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script th:src="@{/js/common.js}" src="../../static/js/common.js"></script>
+    <title>メニュー</title>
+</head>
+
+<body>
+    <nav th:fragment="menu" class="">
+
+        <h1>メニュー</h1>
+        <p>
+            <a th:href="@{/logout}" href="">ログアウト</a>
+        </p>
+        <ul>
+            <li><a th:href="@{/WBA0101/index}" href="../BA0101/regist.html">item登録画面</a></li>
+            <li><a th:href="@{/WBA0201/index}" href="../BA0201/search.html">item検索画面</a></li>
+            <th:block sec:authorize-url="/WBA0401">
+                <li><a th:href="@{/WBA0401/index}" href="../BA0401/delete.html">item削除画面</a></li>
+            </th:block>
+        </ul>
+    </nav>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script th:src="@{/js/common.js}" src="../../static/js/common.js"></script>
+    <title>ヘッダー</title>
+</head>
+
+<body>
+    <div th:fragment="header" class="bg-black">
+        <div class="container-fluid">
+            <a class="navbar-brand text-light" th:href="@{/}" href="top.html">
+                <span class="ms-2">Proman</span>
+            </a>
+            <form method="POST" th:action="@{/logout}" sec:authorize="isAuthenticated()">
+                <button type="submit" class="justify-content-end btn btn-black text-light">ログアウト</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
