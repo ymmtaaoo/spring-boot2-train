@@ -2,16 +2,12 @@
 * 照会画面作成(BA03)
 * 変更削除画面作成(BA05)
 * javascript実装(BA05)
-* CSS実装(Tailwind CSS：BA05、Bootstrap：BA05以外)
+* CSS実装(Tailwind CSS)
   
 ## Tailwind CSSとは
   - CSSフレームワークの一つです。他のCSSフレームワークではBootstrap、BulmaやMaterial UIなどがある。
   - Tailwind CSSの特徴・メリットは"Bootstrap などのフレームワークではコンポーネントが事前に準備されていることでサイトデザインを効率的に行うことができる反面、同じデザインを使うためオリジナルティがないという欠点があると言われています。それに比べて Tailwind CSS ではコンポーネントが準備されていないため、同じボタンというコンポーネントを作成するにも各自が異なる utility class を適用して作成していくことになるため結果としてオリジナリティの高いサイトを作成することができます。"と以下のサイトで書かれていました。  
-    https://reffect.co.jp/html/tailwindcss-for-beginners/
-
-## Bootstrapとは
-  - Bootstrapとは、Twitter社が開発したCSSの「フレームワーク」。このフレームワークには、様々なデザイン（CSS）が用意されており、用意されているデザインを使うだけで簡単にWebサイトのデザインを作ることができる。
-  - https://medium-company.com/bootstrap-%E4%BD%BF%E3%81%84%E6%96%B9/
+  - https://reffect.co.jp/html/tailwindcss-for-beginners/
 
 ## JavaScript
   - 削除ボタン押下時に確認ダイアログを出し、OK押下で削除、キャンセル押下で中断。
