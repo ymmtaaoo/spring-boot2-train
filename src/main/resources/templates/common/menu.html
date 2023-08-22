@@ -10,19 +10,24 @@
 </head>
 
 <body>
-    <nav th:fragment="menu" class="">
-
-        <h1>メニュー</h1>
-        <p>
-            <a th:href="@{/logout}" href="">ログアウト</a>
-        </p>
-        <ul>
-            <li><a th:href="@{/WBA0101/index}" href="../BA0101/regist.html">item登録画面</a></li>
-            <li><a th:href="@{/WBA0201/index}" href="../BA0201/search.html">item検索画面</a></li>
-            <th:block sec:authorize-url="/WBA0401">
-                <li><a th:href="@{/WBA0401/index}" href="../BA0401/delete.html">item削除画面</a></li>
-            </th:block>
-        </ul>
+    <nav th:fragment="menu" class="mx-auto">
+        <aside class="w-64" aria-label="Sidebar">
+            <div class="px-3 py-4 overflow-y-auto rounded bg-gray-50 dark:bg-gray-800">
+                <ul class="space-y-2">
+                    <li><a th:href="@{/WBA0101/index}" href="../BA0101/regist.html"
+                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">item登録画面</a>
+                    </li>
+                    <li><a th:href="@{/WBA0201/index}" href="../BA0201/search.html"
+                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">item検索画面</a>
+                    </li>
+                    <th:block sec:authorize-url="/WBA0401">
+                        <li><a th:href="@{/WBA0401/index}" href="../BA0401/delete.html"
+                                class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">item削除画面</a>
+                        </li>
+                    </th:block>
+                </ul>
+            </div>
+        </aside>
     </nav>
 </body>
 

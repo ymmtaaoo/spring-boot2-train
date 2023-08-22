@@ -14,9 +14,9 @@
     <div th:replace="~{common/header :: header}">...</div>
     <div class="">
         <!--/* メニュー要否に合わせて表示切り替え */-->
-        <div th:if="${enabledMenu == true}" class="">
-            <div th:insert="~{common/menu :: menu}" class="">...</div>
-            <div th:insert="${body}" class="">...</div>
+        <div th:if="${enabledMenu == true}" class="flex-row">
+            <div th:insert="~{common/menu :: menu}" class="col-2">...</div>
+            <div th:insert="${body}" class="col-10">...</div>
         </div>
         <div th:if="${enabledMenu == false}" class="">
             <div th:insert="${body}" class="">...</div>

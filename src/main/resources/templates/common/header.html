@@ -10,14 +10,33 @@
 </head>
 
 <body>
-    <div th:fragment="header" class="bg-black">
-        <div class="container-fluid">
-            <a class="navbar-brand text-light" th:href="@{/}" href="top.html">
-                <span class="ms-2">Proman</span>
-            </a>
-            <form method="POST" th:action="@{/logout}" sec:authorize="isAuthenticated()">
-                <button type="submit" class="justify-content-end btn btn-black text-light">ログアウト</button>
-            </form>
+    <div th:fragment="header" class="flex flex-wrap py-2">
+        <div class="w-full px-4">
+            <nav class="relative flex flex-wrap items-center justify-between px-2 py-3 bg-pink-500 rounded">
+                <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
+                    <div
+                        class="w-full relative flex justify-between lg:w-auto px-4 lg:static lg:block lg:justify-start">
+                        <a class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
+                            th:href="@{/}" href="../AA0101/index.html">
+                            spring-boot2-train
+                        </a>
+                    </div>
+                    <div class="lg:flex lg:flex-grow items-center hidden" id="example-collapse-navbar">
+                        <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+                            <div class="nav-item">
+                                <span
+                                    class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
+                                    名前
+                                </span>
+                            </div>
+                            <li class="nav-item">
+                                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                                    th:href="@{/logout}" href="">ログアウト</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         </div>
     </div>
 </body>
