@@ -1,60 +1,65 @@
 <!DOCTYPE html>
-<html th:replace="~{common/layout :: layout(~{:: title}, ~{:: body/content()}, true)}" xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{common/layout :: layout(~{:: title}, ~{:: body/content()}, true)}"
+    xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>item登録画面</title>
 </head>
+
 <body>
-    <h1>item登録画面</h1>
-    <a th:href="@{/}" href="../AA0101/index.html">TOP画面へ</a>
-    
-    <form method="POST" th:action="@{confirm}" action="./confirm.html" th:object="${itemForm}">
-        <div th:if="${#fields.hasGlobalErrors()}" th:errors="*{global}"></div>
-        <div>
-            <span style="display: inline-block;width: 100px;">ID</span>
-            <input type="text" th:field="*{id}" value="1" />
-            <div th:if="${#fields.hasErrors('id')}" th:errors="*{id}" />
-        </div>
+    <div class="px-3 py-4 overflow-y-auto">
+        <h1 class="flex items-start text-xl font-bold">item登録画面</h1>
 
-        <div>
-            <span style="display: inline-block;width: 100px;">ITEM NAME</span>
-            <input type="text" th:field="*{itemName}" value="ノート" />
-            <div th:if="${#fields.hasErrors('itemName')}" th:errors="*{itemName}" />
-        </div>
+        <form method="POST" th:action="@{confirm}" action="./confirm.html" th:object="${itemForm}">
+            <div class="py-5 space-y-3 indent-2">
+                <div th:if="${#fields.hasGlobalErrors()}" th:errors="*{global}" class="text-red-600"></div>
+                <div>
+                    <span class="inline-block w-32">ID</span>
+                    <input type="text" th:field="*{id}" value="1"
+                        class="rounded border border-gray-600 inline-block w-72" />
+                    <div th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="text-red-600" />
+                </div>
 
-        <div>
-            <span style="display: inline-block;width: 100px;">PRICE</span>
-            <input type="text" th:field="*{price}" value="3000" />
-            <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" />
-            <div th:if="${#fields.hasErrors('bunguPrice')}" th:errors="*{bunguPrice}" />
-        </div>
+                <div>
+                    <span class="inline-block w-32">ITEM NAME</span>
+                    <input type="text" th:field="*{itemName}" value="ノート"
+                        class="rounded border border-gray-600 inline-block w-72" />
+                    <div th:if="${#fields.hasErrors('itemName')}" th:errors="*{itemName}" class="text-red-600" />
+                </div>
 
-        <div>
-            <label for="groupid" ><span style="display: inline-block;width: 100px;">分類</span></label>
-            <select
-              th:field="*{groupid}">
-                <option value=""></option>
-                <option
-                th:each="group : ${groups}"
-                th:value="${group.code}"
-                th:text="${group.label}"
-                selected
-                >
-                文具
-                </option>
-            </select>
-            <span th:if="${#fields.hasErrors('groupid')}" th:errors="*{groupid}"></span>
-        </div>
+                <div>
+                    <span class="inline-block w-32">PRICE</span>
+                    <input type="text" th:field="*{price}" value="3000"
+                        class="rounded border border-gray-600 inline-block w-72" />
+                    <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-red-600" />
+                    <div th:if="${#fields.hasErrors('bunguPrice')}" th:errors="*{bunguPrice}" class="text-red-600" />
+                </div>
 
-        <div>
-            <span style="display: inline-block;width: 100px;">登録日</span>
-            <input type="date" th:field="*{registDate}" value="2023-06-01" />
-            <div th:if="${#fields.hasErrors('registDate')}" th:errors="*{registDate}" />
-        </div>
+                <div>
+                    <label for="groupid"><span class="inline-block w-32">分類</span></label>
+                    <select th:field="*{groupid}" class="rounded border border-gray-600 inline-block w-72">
+                        <option value=""></option>
+                        <option th:each="group : ${groups}" th:value="${group.code}" th:text="${group.label}" selected>
+                            文具
+                        </option>
+                    </select>
+                    <span th:if="${#fields.hasErrors('groupid')}" th:errors="*{groupid}" class="text-red-600"></span>
+                </div>
 
-        
-        <button type="submit">確認</button>
-    </form>
-
+                <div>
+                    <span class="inline-block w-32">登録日</span>
+                    <input type="date" th:field="*{registDate}" value="2023-06-01"
+                        class="rounded border border-gray-600 inline-block w-72" />
+                    <div th:if="${#fields.hasErrors('registDate')}" th:errors="*{registDate}" class="text-red-600" />
+                </div>
+            </div>
+            <div class="px-3 py-3">
+                <button type="submit"
+                    class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-blue-600 border border-blue-700 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">確認</button>
+            </div>
+        </form>
+    </div>
 </body>
+
 </html>

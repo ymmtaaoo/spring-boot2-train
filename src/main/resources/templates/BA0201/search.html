@@ -1,63 +1,99 @@
 <!DOCTYPE html>
-<html th:replace="~{common/layout :: layout(~{:: title}, ~{:: body/content()}, true)}" xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{common/layout :: layout(~{:: title}, ~{:: body/content()}, true)}"
+    xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>item検索画面</title>
 </head>
+
 <body>
-    <h1>item検索画面</h1>
-    <a th:href="@{/}" href="../AA0101/index.html">TOP画面へ</a>
-    
-    <form method="GET" th:action="@{/WBA0201/search}" action="./search.html" th:object="${itemSearchForm}">
-        <div th:if="${#fields.hasGlobalErrors()}" th:errors="*{global}"></div>
-        <div>
-            <span style="display: inline-block;width: 100px;">ITEM NAME</span>
-            <input type="text" th:field="*{itemName}" />
-            <div th:if="${#fields.hasErrors('itemName')}" th:errors="*{itemName}" />
+    <div class="px-3 py-4 overflow-y-auto">
+        <h1 class="flex items-start text-xl font-bold">item検索画面</h1>
+
+        <div class="mt-3 indent-2">
+            <span class="font-bold">検索条件</span>
+            <form method="GET" th:action="@{/WBA0201/search}" action="./search.html" th:object="${itemSearchForm}">
+
+                <div th:if="${#fields.hasGlobalErrors()}" th:errors="*{global}"></div>
+                <div class="mt-3 flex flex-row justify-self-start indent-3">
+                    <div>
+                        <span class="inline-block w-32">ITEM NAME</span>
+                        <input type="text" th:field="*{itemName}"
+                            class="rounded border border-gray-600 inline-block w-36" />
+                        <div th:if="${#fields.hasErrors('itemName')}" th:errors="*{itemName}" />
+                    </div>
+                    <div>
+                        <span class="ml-5 inline-block w-32">PRICE</span>
+                        <input type="text" th:field="*{price}"
+                            class="rounded border border-gray-600 inline-block w-36" />
+                        <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" />
+                    </div>
+                    <input type="hidden" name="page" value="0" />
+                </div>
+                <div class="mt-3 ml-3">
+                    <button type="submit"
+                        class="inline-flex items-center justify-center px-4 py-1 text-base font-medium leading-6 text-white whitespace-no-wrap bg-blue-600 border border-blue-700 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">検索</button>
+                </div>
+            </form>
         </div>
 
-        <div>
-            <span style="display: inline-block;width: 100px;">PRICE</span>
-            <input type="text" th:field="*{price}" />
-            <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" />
+        <div class="mt-4 indent-2">
+            <span class="font-bold">検索結果</span>
+            <div th:if="${pages}">
+                <div class="mt-2 indent-4 font-bold">
+                    総件数：<span th:text="${pages.totalElements}">5</span>
+                </div>
+            </div>
+
+            <table class="table-auto mt-2 ml-4">
+                <thead>
+                    <tr>
+                        <th class="border border-gray-600 px-4 py-2 bg-blue-200">ID</th>
+                        <th class="border border-gray-600 px-4 py-2 bg-blue-200">ITEM NAME</th>
+                        <th class="border border-gray-600 px-4 py-2 bg-blue-200">PRICE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item : ${itemList}">
+                        <td class="border border-gray-600 px-4 py-2 bg-gray-200">
+                            <a th:text="${item.id}" th:href="@{/WBA0301/index(id=${item.id})}"
+                                href="../BA0301/index.html">1</a>
+                        </td>
+                        <td class="border border-gray-600 px-4 py-2 bg-gray-200">
+                            <span th:text="${item.itemName}">ペン</span>
+                        </td>
+                        <td class="border border-gray-600 px-4 py-2 bg-gray-200">
+                            <span th:text="${item.price}">100</span>円
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div th:if="${pages}" class="paging mt-2">
+                <!-- 先頭のページリンク -->
+                <span>
+                    <span th:if="${pages.first}">&lt;&lt;</span>
+                    <a th:if="${not pages.first}" th:href="@{/WBA0201/search(page=0)}" value="1">&lt;&lt;</a>
+                </span>
+
+                <!-- 中間のページリンク -->
+                <span th:each="i:${#numbers.sequence(0, pages.totalPages-1)}">
+                    <span th:if="${i}==${pages.number}" th:text="${i+1}">1</span>
+                    <a th:if="${i}!=${pages.number}" th:href="@{/WBA0201/search(page=${i})}" href="search.html"><span
+                            th:text="${i+1}">2</span></a>
+                </span>
+
+                <!-- 末尾のページリンク -->
+                <span>
+                    <span th:if="${pages.last}">&gt;&gt;</span>
+                    <a th:if="${not pages.last}" th:href="@{/WBA0201/search(page=(${pages.totalPages-1}))}">
+                        &gt;&gt;
+                    </a>
+                </span>
+            </div>
         </div>
-        <input type="hidden" name="page" value="0" />
-        <button type="submit">検索</button>
-    </form>
-
-    <hr/>
-
-    <div th:if="${pages}">
-        <div>総件数：<span th:text="${pages.totalElements}">5</span></div>
     </div>
-
-    <ul th:each="item : ${itemList}">
-        <li><a th:text="${item.id}" th:href="@{/WBA0301/index(id=${item.id})}" href="../BA0301/index.html">1</a>:
-            <span th:text="${item.itemName}">ペン</span>:
-            <span th:text="${item.price}">100円</span>円</li>
-    </ul>
-
-    <div th:if="${pages}" class="paging">
-        <!-- 先頭のページリンク -->
-        <span>
-            <span th:if="${pages.first}">&lt;&lt;</span>
-            <a th:if="${not pages.first}" th:href="@{/WBA0201/search(page=0)}" value="1">&lt;&lt;</a>
-        </span>
-
-        <!-- 中間のページリンク -->
-        <span th:each="i:${#numbers.sequence(0, pages.totalPages-1)}">
-            <span th:if="${i}==${pages.number}" th:text="${i+1}">1</span>
-            <a th:if="${i}!=${pages.number}" th:href="@{/WBA0201/search(page=${i})}" href="search.html"><span th:text="${i+1}">2</span></a>
-        </span>
-
-        <!-- 末尾のページリンク -->
-        <span>
-            <span th:if="${pages.last}">&gt;&gt;</span>
-            <a th:if="${not pages.last}" th:href="@{/WBA0201/search(page=(${pages.totalPages-1}))}">
-                &gt;&gt;
-            </a>
-        </span>
-    </div>
-
 </body>
+
 </html>

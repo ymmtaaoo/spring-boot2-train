@@ -1,14 +1,23 @@
 <!DOCTYPE html>
-<html th:replace="~{common/layout :: layout(~{:: title}, ~{:: body/content()}, false)}" xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{common/layout :: layout(~{:: title}, ~{:: body/content()}, false)}"
+    xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>item変更登録完了画面</title>
 </head>
+
 <body>
-    <h1>item変更登録完了画面</h1>
-    <a th:href="@{/}" href="../AA0101/index.html">TOP画面へ</a>
-    <div>
-        <span th:text="*{message}">登録が完了しました。</span>
+    <div class="px-28 py-4 overflow-y-auto">
+        <h1 class="flex items-start text-xl font-bold">item変更登録完了画面</h1>
+        <div class="py-5 indent-2">
+            <span th:text="*{message}">登録が完了しました。</span>
+        </div>
+        <div class="px-3 py-3">
+            <a th:href="@{/}" href="../AA0101/index.html"
+                class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-blue-600 border border-blue-700 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">TOP画面へ</a>
+        </div>
     </div>
 </body>
+
 </html>

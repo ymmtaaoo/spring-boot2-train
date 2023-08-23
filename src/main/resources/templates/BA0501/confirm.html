@@ -1,49 +1,57 @@
 <!DOCTYPE html>
-<html th:replace="~{common/layout :: layout(~{:: title}, ~{:: body/content()}, false)}" xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{common/layout :: layout(~{:: title}, ~{:: body/content()}, false)}"
+    xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>item登録確認画面</title>
 </head>
+
 <body>
-    <h1>item登録確認画面</h1>
-    <a th:href="@{/}" href="../AA0101/index.html">TOP画面へ</a>
+    <div class="px-28 py-4 overflow-y-auto">
+        <h1 class="flex items-start text-xl font-bold">item登録確認画面</h1>
+        <form method="POST" th:action="@{index}" action="./complete.html" th:object="${itemUpdateDeleteForm}">
+            <div class="py-5 space-y-3 indent-2">
+                <div>
+                    <span class="inline-block w-32">ID</span>
+                    <span th:text="*{id}">1</span>
+                </div>
 
-    <form method="POST" th:action="@{index}" action="./complete.html" th:object="${itemUpdateDeleteForm}">
-        <div>
-            <span style="display: inline-block;width: 100px;">ID</span>
-            <span th:text="*{id}" >1</span>
-        </div>
+                <div>
+                    <span class="inline-block w-32">ITEM NAME</span>
+                    <span th:text="*{itemName}">ノート</span>
+                </div>
 
-        <div>
-            <span style="display: inline-block;width: 100px;">ITEM NAME</span>
-            <span th:text="*{itemName}" >ノート</span>
-        </div>
+                <div>
+                    <span class="inline-block w-32">PRICE</span>
+                    <span th:text="*{#numbers.formatInteger(price,1,'COMMA')}">3,000</span>
+                </div>
 
-        <div>
-            <span style="display: inline-block;width: 100px;">PRICE</span>
-            <span th:text="*{#numbers.formatInteger(price,1,'COMMA')}" >3,000</span>
-        </div>
+                <div>
+                    <span class="inline-block w-32">分類</span>
+                    <span th:text="*{@itemRegistViewHelper.getGroupName(groupid)}">文具</span>
+                </div>
 
-        <div>
-            <span style="display: inline-block;width: 100px;">分類</span>
-            <span th:text="*{@itemRegistViewHelper.getGroupName(groupid)}" >文具</span>
-        </div>
+                <div>
+                    <span class="inline-block w-32">登録日</span>
+                    <span th:text="*{#temporals.format(registDate, 'uuuu/MM/dd')}">2023/06/01/</span>
+                </div>
 
-        <div>
-            <span style="display: inline-block;width: 100px;">登録日</span>
-            <span th:text="*{#temporals.format(registDate, 'uuuu/MM/dd')}">2023/06/01/</span>
-        </div>
-
-        <input type="hidden" th:field="*{id}" />
-        <input type="hidden" th:field="*{itemName}" />
-        <input type="hidden" th:field="*{price}" />
-        <input type="hidden" th:field="*{groupid}" />
-        <input type="hidden" th:field="*{registDate}" />
-        <input type="hidden" th:field="*{versionNo}" />
-
-        <button type="submit" name="back">戻る</button>
-        <button type="submit" name="update">登録</button>
-    </form>
-
+                <input type="hidden" th:field="*{id}" />
+                <input type="hidden" th:field="*{itemName}" />
+                <input type="hidden" th:field="*{price}" />
+                <input type="hidden" th:field="*{groupid}" />
+                <input type="hidden" th:field="*{registDate}" />
+                <input type="hidden" th:field="*{versionNo}" />
+            </div>
+            <div class="px-3 py-3">
+                <button type="submit" name="back"
+                    class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-blue-600 border border-blue-700 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">戻る</button>
+                <button type="submit" name="update"
+                    class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-blue-600 border border-blue-700 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">登録</button>
+            </div>
+        </form>
+    </div>
 </body>
+
 </html>

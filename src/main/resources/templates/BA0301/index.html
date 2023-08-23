@@ -1,45 +1,53 @@
 <!DOCTYPE html>
-<html th:replace="~{common/layout :: layout(~{:: title}, ~{:: body/content()}, true)}" xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{common/layout :: layout(~{:: title}, ~{:: body/content()}, true)}"
+    xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>item詳細画面</title>
 </head>
+
 <body>
-    <h1>item詳細画面</h1>
-    <a th:href="@{/}" href="../AA0101/index.html">TOP画面へ</a>
+    <div class="px-3 py-4 overflow-y-auto">
+        <h1 class="flex items-start text-xl font-bold">item詳細画面</h1>
+        <div class="py-5 space-y-3 indent-2">
+            <div>
+                <span class="inline-block w-32">ID</span>
+                <span th:text="${itemForm.id}"></span>
+            </div>
 
-    <div>
-        <span style="display: inline-block;width: 150px;">ID</span>
-        <span th:text="${itemForm.id}"></span>
+            <div>
+                <span class="inline-block w-32">ITEM NAME</span>
+                <span th:text="${itemForm.itemName}"></span>
+            </div>
+
+            <div>
+                <span class="inline-block w-32">PRICE</span>
+                <span th:text="${itemForm.price}"></span>
+            </div>
+
+            <div>
+                <span class="inline-block w-32">分類</span>
+                <span th:text="*{@itemRegistViewHelper.getGroupName(itemForm.groupid)}">文具</span>
+            </div>
+
+            <div>
+                <span class="inline-block w-32">登録日</span>
+                <span th:text="*{#temporals.format(itemForm.registDate, 'uuuu/MM/dd')}"></span>
+            </div>
+
+            <div>
+                <span class="inline-block w-32">バージョンNo</span>
+                <span th:text="${itemForm.versionNo}"></span>
+            </div>
+        </div>
+        <div class="px-3 py-3">
+            <a th:href="@{/WBA0201/search}" href="../BA0201/search.html"
+                class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-blue-600 border border-blue-700 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">戻る</a>
+            <a th:href="@{/WBA0501/index(id=${itemForm.id})}" href="../BA0501/index.html"
+                class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-blue-600 border border-blue-700 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">変更・削除画面へ</a>
+        </div>
     </div>
-
-    <div>
-        <span style="display: inline-block;width: 150px;">ITEM NAME</span>
-        <span th:text="${itemForm.itemName}"></span>
-    </div>
-
-    <div>
-        <span style="display: inline-block;width: 150px;">PRICE</span>
-        <span th:text="${itemForm.price}"></span>
-    </div>
-
-    <div>
-        <span style="display: inline-block;width: 150px;">分類</span>
-        <span th:text="*{@itemRegistViewHelper.getGroupName(itemForm.groupid)}" >文具</span>
-    </div>
-
-    <div>
-        <span style="display: inline-block;width: 150px;">登録日</span>
-        <span th:text="*{#temporals.format(itemForm.registDate, 'uuuu/MM/dd')}"></span>
-    </div>
-
-    <div>
-        <span style="display: inline-block;width: 150px;">バージョンNo</span>
-        <span th:text="${itemForm.versionNo}"></span>
-    </div>
-
-    <li><a th:href="@{/WBA0201/search}" href="../BA0201/search.html">戻る</a></li>
-    <li><a th:href="@{/WBA0501/index(id=${itemForm.id})}" href="../BA0501/index.html">変更・削除画面へ</a></li>
-    
 </body>
+
 </html>
