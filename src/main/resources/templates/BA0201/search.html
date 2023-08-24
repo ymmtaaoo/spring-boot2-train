@@ -15,19 +15,19 @@
             <span class="font-bold">検索条件</span>
             <form method="GET" th:action="@{/WBA0201/search}" action="./search.html" th:object="${itemSearchForm}">
 
-                <div th:if="${#fields.hasGlobalErrors()}" th:errors="*{global}"></div>
+                <div th:if="${#fields.hasGlobalErrors()}" th:errors="*{global}" class="text-red-600"></div>
                 <div class="mt-3 flex flex-row justify-self-start indent-3">
                     <div>
                         <span class="inline-block w-32">ITEM NAME</span>
                         <input type="text" th:field="*{itemName}"
                             class="rounded border border-gray-600 inline-block w-36" />
-                        <div th:if="${#fields.hasErrors('itemName')}" th:errors="*{itemName}" />
+                        <div th:if="${#fields.hasErrors('itemName')}" th:errors="*{itemName}" class="text-red-600" />
                     </div>
                     <div>
                         <span class="ml-5 inline-block w-32">PRICE</span>
                         <input type="text" th:field="*{price}"
                             class="rounded border border-gray-600 inline-block w-36" />
-                        <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" />
+                        <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-red-600" />
                     </div>
                     <input type="hidden" name="page" value="0" />
                 </div>
@@ -44,51 +44,51 @@
                 <div class="mt-2 indent-4 font-bold">
                     総件数：<span th:text="${pages.totalElements}">5</span>
                 </div>
-            </div>
 
-            <table class="table-auto mt-2 ml-4">
-                <thead>
-                    <tr>
-                        <th class="border border-gray-600 px-4 py-2 bg-blue-200">ID</th>
-                        <th class="border border-gray-600 px-4 py-2 bg-blue-200">ITEM NAME</th>
-                        <th class="border border-gray-600 px-4 py-2 bg-blue-200">PRICE</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="item : ${itemList}">
-                        <td class="border border-gray-600 px-4 py-2 bg-gray-200">
-                            <a th:text="${item.id}" th:href="@{/WBA0301/index(id=${item.id})}"
-                                href="../BA0301/index.html">1</a>
-                        </td>
-                        <td class="border border-gray-600 px-4 py-2 bg-gray-200">
-                            <span th:text="${item.itemName}">ペン</span>
-                        </td>
-                        <td class="border border-gray-600 px-4 py-2 bg-gray-200">
-                            <span th:text="${item.price}">100</span>円
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                <table class="table-auto mt-2 ml-4">
+                    <thead>
+                        <tr>
+                            <th class="border border-gray-600 px-4 py-2 bg-blue-200">ID</th>
+                            <th class="border border-gray-600 px-4 py-2 bg-blue-200">ITEM NAME</th>
+                            <th class="border border-gray-600 px-4 py-2 bg-blue-200">PRICE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="item : ${itemList}">
+                            <td class="border border-gray-600 px-4 py-2 bg-gray-200">
+                                <a th:text="${item.id}" th:href="@{/WBA0301/index(id=${item.id})}"
+                                    href="../BA0301/index.html">1</a>
+                            </td>
+                            <td class="border border-gray-600 px-4 py-2 bg-gray-200">
+                                <span th:text="${item.itemName}">ペン</span>
+                            </td>
+                            <td class="border border-gray-600 px-4 py-2 bg-gray-200">
+                                <span th:text="${item.price}">100</span>円
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
-            <div th:if="${pages}" class="paging mt-2">
                 <!-- 先頭のページリンク -->
-                <span>
-                    <span th:if="${pages.first}">&lt;&lt;</span>
-                    <a th:if="${not pages.first}" th:href="@{/WBA0201/search(page=0)}" value="1">&lt;&lt;</a>
+                <span class="ml-4">
+                    <span th:if="${pages.first}">最初</span>
+                    <a th:if="${not pages.first}" th:href="@{/WBA0201/search(page=0)}" value="1"
+                        class="text-blue-700 underline underline-offset-1">最初</a>
                 </span>
 
                 <!-- 中間のページリンク -->
-                <span th:each="i:${#numbers.sequence(0, pages.totalPages-1)}">
+                <span th:each="i:${#numbers.sequence(0, pages.totalPages-1)}" class="ml-4">
                     <span th:if="${i}==${pages.number}" th:text="${i+1}">1</span>
                     <a th:if="${i}!=${pages.number}" th:href="@{/WBA0201/search(page=${i})}" href="search.html"><span
-                            th:text="${i+1}">2</span></a>
+                            th:text="${i+1}" class="text-blue-700 underline underline-offset-1">2</span></a>
                 </span>
 
                 <!-- 末尾のページリンク -->
-                <span>
-                    <span th:if="${pages.last}">&gt;&gt;</span>
-                    <a th:if="${not pages.last}" th:href="@{/WBA0201/search(page=(${pages.totalPages-1}))}">
-                        &gt;&gt;
+                <span class="ml-4">
+                    <span th:if="${pages.last}">最後</span>
+                    <a th:if="${not pages.last}" th:href="@{/WBA0201/search(page=(${pages.totalPages-1}))}"
+                        class="text-blue-700 underline underline-offset-1">
+                        最後
                     </a>
                 </span>
             </div>

@@ -13,14 +13,14 @@
             <h1 class="flex items-start text-xl font-bold">
                 TOPメニュー</h1>
             <li><a th:href="@{/WBA0101/index}" href="../BA0101/regist.html"
-                    class="flex items-center p-2 text-base font-normal rounded-lg hover:bg-gray-200 indent-2">item登録画面</a>
+                    class="flex items-center p-2 text-base font-normal underline underline-offset-1 rounded-lg hover:bg-gray-200 indent-2">item登録画面</a>
             </li>
             <li><a th:href="@{/WBA0201/index}" href="../BA0201/search.html"
-                    class="flex items-center p-2 text-base font-normal rounded-lg hover:bg-gray-200 indent-2">item検索画面</a>
+                    class="flex items-center p-2 text-base font-normal underline underline-offset-1 rounded-lg hover:bg-gray-200 indent-2">item検索画面</a>
             </li>
             <th:block sec:authorize-url="/WBA0401">
                 <li><a th:href="@{/WBA0401/index}" href="../BA0401/delete.html"
-                        class="flex items-center p-2 text-base font-normal rounded-lg hover:bg-gray-200 indent-2">item削除画面</a>
+                        class="flex items-center p-2 text-base font-normal underline underline-offset-1 rounded-lg hover:bg-gray-200 indent-2">item削除画面</a>
                 </li>
             </th:block>
         </ul>
